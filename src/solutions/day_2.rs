@@ -31,12 +31,7 @@ pub fn solve_day_2_part_1() {
 }
 
 pub fn solve_day_2_part_2() {
-    // let text = fs::read_to_string("./data/input/day_2.txt").expect("Could not parse text file");
-    let text = String::from(
-        "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,
-    1698522-1698528,446443-446449,38593856-38593862,565653-565659,
-    824824821-824824827,2121212118-2121212124",
-    );
+    let text = fs::read_to_string("./data/input/day_2.txt").expect("Could not parse text file");
     let ranges = text.trim().split(",");
     let mut invalid_id_sum = 0;
 
@@ -65,7 +60,6 @@ pub fn solve_day_2_part_2() {
 
                 if pattern_exists {
                     invalid_id_sum += num;
-                    println!("{}", num);
                     break;
                 }
             }
