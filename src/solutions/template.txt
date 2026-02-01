@@ -1,0 +1,34 @@
+use std::fs::read_to_string;
+
+pub fn solve_day_x_part_1() {
+    let text = read_to_string("./data/input/day_x.txt").expect("Could not parse text file");
+    let result = part_1(text);
+    println!("Day x Part 1: {}", result);
+}
+
+fn part_1(text: String) -> i64 {}
+
+pub fn solve_day_x_part_2() {
+    let text = read_to_string("./data/input/day_x.txt").expect("Could not parse text file");
+    let result = part_2(text);
+    println!("Day x Part 2: {}", result);
+}
+
+fn part_2(text: String) -> i64 {}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const TEST_INPUT: &str = "";
+
+    #[test]
+    fn test_part_1() {
+        assert_eq!(part_1(TEST_INPUT.to_string()), 0);
+    }
+
+    #[test]
+    fn test_part_2() {
+        assert_eq!(part_2(TEST_INPUT.to_string()), 0);
+    }
+}
