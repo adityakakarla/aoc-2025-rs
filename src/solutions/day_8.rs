@@ -1,5 +1,6 @@
+use std::cmp::Reverse;
 use std::{
-    collections::{BinaryHeap, HashMap, hash_set::Union},
+    collections::{BinaryHeap, HashMap},
     fs::read_to_string,
 };
 
@@ -117,7 +118,31 @@ fn part_2(text: String) -> i64 {
             + (point_1[2] - point_2[2]).powi(2))
         .sqrt();
     };
-    0
+
+    let mut heap = BinaryHeap::new();
+
+    for (i, point) in points.iter().enumerate() {
+        for j in (i + 1)..points.len() {
+            let point_2 = &points[j];
+            let curr_distance = distance(point, point_2);
+            heap.push((Reverse(OrderedFloat(curr_distance)), i, j));
+        }
+    }
+
+    let mut uf = UnionFind::new(points.len());
+    let mut edge_count = 0;
+    let mut last_nodes = (0, 0);
+
+    while edge_count < (points.len() - 1) {
+        let (_, i, j) = heap.pop().unwrap();
+        last_nodes = (i, j);
+        if uf.find(i) != uf.find(j) {
+            edge_count += 1;
+            uf.union(i, j);
+        }
+    }
+
+    points[last_nodes.0][0] as i64 * points[last_nodes.1][0] as i64
 }
 
 #[cfg(test)]

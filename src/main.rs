@@ -7,7 +7,7 @@ use crate::solutions::{
     day_5::{solve_day_5_part_1, solve_day_5_part_2},
     day_6::{solve_day_6_part_1, solve_day_6_part_2},
     day_7::{solve_day_7_part_1, solve_day_7_part_2},
-    day_8::solve_day_8_part_1,
+    day_8::{solve_day_8_part_1, solve_day_8_part_2},
 };
 
 fn main() {
@@ -26,4 +26,5 @@ fn main() {
     solve_day_7_part_1();
     solve_day_7_part_2();
     solve_day_8_part_1();
+    solve_day_8_part_2();
 }
