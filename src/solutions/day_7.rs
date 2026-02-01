@@ -66,30 +66,27 @@ fn part_2(text: String) -> i64 {
         }
     }
 
-    let mut beams: HashSet<usize> = HashSet::new();
-
-    beams.insert(manifold_idx);
-
-    let mut split_count = 0;
+    let mut beams = vec![0; line_length];
+    beams[manifold_idx] = 1;
 
     for line in lines {
         for (idx, c) in line.chars().enumerate() {
-            if beams.contains(&idx) && c == '^' {
-                beams.remove(&idx);
+            if beams[idx] > 0 && c == '^' {
                 if idx + 1 < line_length {
-                    beams.insert(idx + 1);
+                    beams[idx + 1] += beams[idx];
                 }
 
                 if idx > 0 {
-                    beams.insert(idx - 1);
+                    beams[idx - 1] += beams[idx];
                 }
 
-                split_count += 1;
+                beams[idx] = 0;
             }
         }
     }
 
-    split_count
+    let total_sum: usize = beams.iter().sum();
+    total_sum as i64
 }
 
 #[cfg(test)]
@@ -120,6 +117,6 @@ mod tests {
 
     #[test]
     fn test_part_2() {
-        assert_eq!(part_2(TEST_INPUT.to_string()), 0);
+        assert_eq!(part_2(TEST_INPUT.to_string()), 40);
     }
 }
